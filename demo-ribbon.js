@@ -1,15 +1,24 @@
-/* شريط «نسخة عرض» فوق الصفحة */
+/* شريط «نسخة تجريبية» فوق الصفحة — نفس الملف في كل نسخ العرض
+   data-text  = السطر اللي جنب الشارة (اختياري)
+   data-outside = يتحط برّه الـbody (للأنظمة اللي بتعيد رسم الـbody كله زي سيزر) */
 (function (d) {
-  var s = d.currentScript, t = (s && s.getAttribute("data-text")) || "نسخة عرض تجريبية";
-  var r = d.createElement("div");
-  r.setAttribute("role", "note");
-  r.textContent = t;
-  if (s && s.hasAttribute("data-fixed")) {
-    /* النظام بيعيد رسم الـbody كله، فالشارة بتتحط برّه */
-    r.style.cssText = "position:fixed;left:14px;bottom:14px;z-index:99999;max-width:calc(100vw - 28px);padding:8px 14px;border-radius:999px;background:#111;color:#F7F5F2;font:600 12px/1.5 system-ui,sans-serif;direction:rtl;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);pointer-events:none";
-    d.addEventListener("DOMContentLoaded", function () { d.documentElement.appendChild(r); });
-    return;
+  var s = d.currentScript;
+  var text = (s && s.getAttribute("data-text")) || "الطلبات والأرقام هنا للتوضيح بس — ما لها أي علاقة بالمكان الحقيقي";
+  var outside = s && s.hasAttribute("data-outside");
+  var css = "#demo-banner{position:relative;z-index:2147483000;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;" +
+    "padding:9px 14px;background:#111;color:#F7F5F2;direction:rtl;text-align:center;" +
+    "font:500 12.5px/1.6 system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif}" +
+    "#demo-banner b{flex:none;background:#F24A3D;color:#fff;font-weight:700;font-size:13px;border-radius:999px;padding:2px 12px;letter-spacing:0}";
+  function mount() {
+    if (d.getElementById("demo-banner")) return;
+    var st = d.createElement("style"); st.textContent = css; d.head.appendChild(st);
+    var r = d.createElement("div");
+    r.id = "demo-banner"; r.setAttribute("role", "note");
+    var b = d.createElement("b"); b.textContent = "نسخة تجريبية";
+    var t = d.createElement("span"); t.textContent = text;
+    r.appendChild(b); r.appendChild(t);
+    if (outside) d.documentElement.insertBefore(r, d.body);
+    else d.body.insertBefore(r, d.body.firstChild);
   }
-  r.style.cssText = "position:relative;z-index:5;padding:9px 14px;background:#111;color:#F7F5F2;font:600 12px/1.5 system-ui,sans-serif;text-align:center;direction:rtl";
-  d.addEventListener("DOMContentLoaded", function () { d.body.insertBefore(r, d.body.firstChild); });
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", mount); else mount();
 })(document);
