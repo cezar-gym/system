@@ -1,0 +1,126 @@
+/* ============================================================
+   سيزر جيم — نظام الإدارة | الأساس: التوكنز والريسِت والتايبوغرافي
+   نفس هوية الموقع بالظبط (assets/core.css في cezar-site)
+   ============================================================ */
+
+:root{
+  /* ألوان الهوية */
+  --ink:#17181C;
+  --ink-2:#1F2026;
+  --ink-3:#23242A;
+  --ink-4:#2E2F36;
+  --paper:#F3F1EB;
+  --surface:#FFFFFF;
+  --cream:#FBFAF6;
+  --panel:#EFEDE5;
+  --panel-2:#E8E5DC;
+  --hair:#E2DFD6;
+  --hair-2:#D5D2C7;
+  --muted:#6E6F67;
+  --faint:#9A9B91;
+
+  --lime:#BEF23C;
+  --lime-hot:#D6FF4B;
+  --lime-deep:#6F9410;
+  --lime-dim:#7E9E2E;
+  --lime-wash:#F2F9DE;
+
+  --gold:#E8B14C;
+  --gold-deep:#9C6F16;
+  --gold-wash:#FBF3E2;
+
+  /* حالات */
+  --ok:#3E8E5A;      --ok-wash:#E7F3EB;
+  --warn:#C98A18;    --warn-wash:#FBF2DF;
+  --danger:#C0492B;  --danger-wash:#FAEBE7;
+  --info:#3A6EA5;    --info-wash:#E8EFF7;
+  --violet:#6B5AA8;  --violet-wash:#EFEBF8;
+
+  --glow:0 0 22px rgba(190,242,60,.55);
+  --glow-lg:0 0 44px rgba(190,242,60,.42);
+
+  --r-sm:8px;
+  --r:12px;
+  --r-card:16px;
+  --r-lg:22px;
+  --r-pill:100px;
+
+  --e-out:cubic-bezier(.16,1,.3,1);
+  --e-in-out:cubic-bezier(.65,0,.35,1);
+  --t-fast:.18s;
+  --t:.34s;
+
+  --sh-1:0 1px 3px rgba(23,24,28,.05);
+  --sh-2:0 6px 20px rgba(23,24,28,.07);
+  --sh-3:0 18px 44px rgba(23,24,28,.12);
+  --sh-pop:0 24px 70px rgba(23,24,28,.22);
+
+  --nav-w:264px;
+  --nav-w-min:74px;
+  --top-h:66px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+
+body{
+  font-family:'Tajawal',system-ui,'Segoe UI',sans-serif;
+  font-weight:500;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+
+h1,h2,h3,h4,h5{
+  font-family:'Tajawal',system-ui,sans-serif;
+  font-weight:800;line-height:1.15;letter-spacing:-.4px;margin:0;
+  text-wrap:balance;
+}
+h1{font-weight:900}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0;font-family:inherit}
+ul,ol{margin:0;padding:0;list-style:none}
+table{border-collapse:collapse;width:100%}
+
+/* الأرقام واللاتيني دايمًا Archivo — والأرقام إنجليزي دايمًا */
+.num,.lat{font-family:'Archivo',system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.num{font-weight:800;letter-spacing:-.5px}
+
+/* ⚠️ letter-spacing الموجب بيفصل الحروف العربية — للاتيني بس */
+.lbl{font-size:12px;font-weight:800;letter-spacing:normal;color:var(--muted)}
+.lbl.lat{letter-spacing:2.4px;font-weight:600;text-transform:uppercase}
+
+.eyebrow{
+  display:flex;align-items:center;gap:9px;
+  font-family:'Archivo',system-ui,sans-serif;
+  font-weight:600;font-size:11px;letter-spacing:3.6px;
+  text-transform:uppercase;color:#83847B;
+}
+.eyebrow::before{content:'';width:8px;height:8px;flex:none;background:var(--lime);box-shadow:var(--glow)}
+
+/* سكرول بار هادي */
+*::-webkit-scrollbar{width:11px;height:11px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{background:var(--hair-2);border-radius:100px;border:3px solid var(--paper)}
+*::-webkit-scrollbar-thumb:hover{background:var(--faint)}
+
+::selection{background:var(--lime);color:var(--ink)}
+
+/* حركة الدخول */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes slideIn{from{transform:translateX(-100%)}to{transform:none}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.82)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}

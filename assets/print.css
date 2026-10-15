@@ -1,0 +1,71 @@
+/* ============================================================
+   سيزر جيم — الطباعة: الإيصالات وكروت العضوية والتقارير
+   ============================================================ */
+
+/* ورقة الطباعة — بتتبني في الـDOM وبتفضل مخفية لحد الطباعة */
+#printroot{display:none}
+
+.rc{
+  width:80mm;padding:6mm 5mm;background:#fff;color:#000;
+  font-family:'Tajawal',sans-serif;font-size:12px;line-height:1.55;
+}
+.rc-h{text-align:center;border-bottom:1.5px dashed #000;padding-bottom:4mm;margin-bottom:4mm}
+.rc-h .logo{font-family:'Archivo',sans-serif;font-weight:800;font-size:21px;letter-spacing:4px}
+.rc-h .ar{font-size:15px;font-weight:800;margin-top:1mm}
+.rc-h .meta{font-size:10.5px;margin-top:2mm;line-height:1.5}
+.rc-t{text-align:center;font-weight:800;font-size:14px;margin-bottom:3mm}
+.rc-kv{display:flex;justify-content:space-between;gap:6px;padding:1.1mm 0;font-size:11.5px}
+.rc-kv b{font-weight:700}
+.rc-kv .v{font-family:'Archivo',sans-serif;font-weight:700}
+.rc-sep{border-top:1px dashed #000;margin:3mm 0}
+.rc-tot{display:flex;justify-content:space-between;font-size:15px;font-weight:800;padding:2mm 0}
+.rc-tot .v{font-family:'Archivo',sans-serif}
+.rc-f{text-align:center;font-size:10.5px;margin-top:4mm;border-top:1.5px dashed #000;padding-top:3mm;line-height:1.6}
+.rc-bc{display:flex;gap:1.4px;height:11mm;justify-content:center;margin:3mm 0 1mm}
+.rc-bc i{display:block;background:#000}
+.rc-code{text-align:center;font-family:'Archivo',sans-serif;letter-spacing:3px;font-weight:700;font-size:12px}
+
+/* ورقة A4 للتقارير */
+.a4{
+  width:210mm;min-height:297mm;padding:14mm 13mm;background:#fff;color:#17181C;
+  font-family:'Tajawal',sans-serif;font-size:12px;
+}
+.a4-h{display:flex;justify-content:space-between;align-items:flex-end;
+  border-bottom:2.5px solid #17181C;padding-bottom:4mm;margin-bottom:6mm}
+.a4-h .logo{font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;letter-spacing:4px}
+.a4-h h1{font-size:19px;font-weight:800}
+.a4-h .meta{font-size:11px;color:#555;text-align:end;line-height:1.6}
+.a4 table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:3mm}
+.a4 th{background:#F0EEE7;text-align:start;padding:2.2mm 2.6mm;font-weight:800;border-bottom:1.5px solid #17181C;font-size:11px}
+.a4 td{padding:2mm 2.6mm;border-bottom:1px solid #E2DFD6}
+.a4 td.n,.a4 th.n{font-family:'Archivo',sans-serif;font-variant-numeric:tabular-nums;text-align:end}
+.a4 tfoot td{font-weight:800;border-top:2px solid #17181C;background:#F7F6F1}
+.a4-f{margin-top:8mm;border-top:1px solid #D5D2C7;padding-top:3mm;font-size:10px;color:#777;
+  display:flex;justify-content:space-between}
+.a4-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-bottom:5mm}
+.a4-stat{border:1px solid #E2DFD6;border-radius:3mm;padding:3mm}
+.a4-stat .t{font-size:10.5px;color:#666;font-weight:700}
+.a4-stat .v{font-family:'Archivo',sans-serif;font-size:19px;font-weight:800;margin-top:1mm}
+.a4 h2{font-size:14px;font-weight:800;margin:6mm 0 2mm;padding-bottom:1.5mm;border-bottom:1px solid #E2DFD6}
+
+/* كارت عضوية للطباعة — 85.6×54mm بمقاس بطاقة */
+.pcard{width:85.6mm;height:54mm;border-radius:3.5mm;padding:4.5mm;
+  background:#17181C;color:#F3F1EB;display:flex;flex-direction:column;justify-content:space-between;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pcard .code{font-family:'Archivo',sans-serif;font-size:16px;font-weight:800;letter-spacing:2.5px;color:#BEF23C}
+.pcard .nm{font-size:14px;font-weight:800}
+.pcard .sm{font-size:9px;color:#9A9B91}
+.pcard .bc{display:flex;gap:.35mm;height:8mm}
+.pcard .bc i{display:block;background:#F3F1EB}
+.pcards{display:flex;flex-wrap:wrap;gap:5mm;padding:8mm}
+
+@media print{
+  @page{margin:0;size:auto}
+  html,body{background:#fff!important;margin:0!important;padding:0!important}
+  body > *{display:none!important}
+  #printroot{display:block!important}
+  .rc,.a4,.pcards{margin:0 auto}
+  .a4{box-shadow:none}
+  .pagebreak{page-break-after:always}
+  * {-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
